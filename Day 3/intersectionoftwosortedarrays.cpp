@@ -1,21 +1,30 @@
-#include <bits/stdc++.h>
-vector<int> findArrayIntersection(vector<int> &arr1, int n, vector<int> &arr2, int m)
-{
-	// Write your code here.
-	int i=0;int j=0;
-	vector<int>ans;
-	while(i<n && j<m){
-		if(arr1[i]==arr2[j]){
-			ans.push_back(arr1[i]);
-			i++;
-			j++;
-		}
-		else if(arr1[i]<arr2[j]){
-			i++;
-		}
-		else{
-			j++;
-		}
-	}
-	return ans;
-}
+class Solution {
+public:
+    vector<int> intersection(vector<int>& nums1, vector<int>& nums2) {
+        set<int>res;
+        sort(nums1.begin(),nums1.end());
+        sort(nums2.begin(),nums2.end());
+        int i=0;
+        int j=0;
+        while(i<nums1.size()&& j<nums2.size()){
+            if(nums1[i]==nums2[j]){
+                res.insert(nums1[i]);
+                i++;
+                j++;
+            }
+            else if(nums1[i]>nums2[j]){
+                j++;
+            }
+            else if(nums1[i]<nums2[j]){
+            i++;
+            }
+
+
+        }
+        vector<int>ans;
+        for(auto i:res){
+            ans.push_back(i);
+        }
+        return ans;
+    }
+};
